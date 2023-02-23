@@ -65,7 +65,7 @@ class Unet(SegmentationModel):
         classes: int = 1,
         activation: Optional[Union[str, callable]] = None,
         aux_params: Optional[dict] = None,
-        path: None
+        path: str = None
     ):
         super().__init__()
 
