@@ -63,6 +63,7 @@ class FPN(SegmentationModel):
         activation: Optional[str] = None,
         upsampling: int = 4,
         aux_params: Optional[dict] = None,
+        path: str = None
     ):
         super().__init__()
 
@@ -75,6 +76,7 @@ class FPN(SegmentationModel):
             in_channels=in_channels,
             depth=encoder_depth,
             weights=encoder_weights,
+            path=path
         )
 
         self.decoder = FPNDecoder(
