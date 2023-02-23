@@ -48,7 +48,7 @@ encoders.update(mix_transformer_encoders)
 encoders.update(mobileone_encoders)
 
 
-def get_encoder(name, in_channels=3, depth=5, weights=None, output_stride=32, **kwargs):
+def get_encoder(name, in_channels=3, depth=5, weights=None, output_stride=32,path=None, **kwargs):
 
     if name.startswith("tu-"):
         name = name[3:]
@@ -82,7 +82,10 @@ def get_encoder(name, in_channels=3, depth=5, weights=None, output_stride=32, **
                     list(encoders[name]["pretrained_settings"].keys()),
                 )
             )
-        encoder.load_state_dict(model_zoo.load_url(settings["url"]))
+        if path is not None:
+            encoder.load_state_dict(model_zoo.load_url(path))
+        else:
+            encoder.load_state_dict(model_zoo.load_url(settings["url"]))
 
     encoder.set_in_channels(in_channels, pretrained=weights is not None)
     if output_stride != 32:
