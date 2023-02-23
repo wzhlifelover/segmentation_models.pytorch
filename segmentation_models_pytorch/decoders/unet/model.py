@@ -65,6 +65,7 @@ class Unet(SegmentationModel):
         classes: int = 1,
         activation: Optional[Union[str, callable]] = None,
         aux_params: Optional[dict] = None,
+        path: None
     ):
         super().__init__()
 
@@ -73,6 +74,7 @@ class Unet(SegmentationModel):
             in_channels=in_channels,
             depth=encoder_depth,
             weights=encoder_weights,
+            path=path
         )
 
         self.decoder = UnetDecoder(
