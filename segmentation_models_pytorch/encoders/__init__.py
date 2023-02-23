@@ -1,5 +1,6 @@
 import timm
 import functools
+import torch
 import torch.utils.model_zoo as model_zoo
 
 from .resnet import resnet_encoders
@@ -83,7 +84,7 @@ def get_encoder(name, in_channels=3, depth=5, weights=None, output_stride=32,pat
                 )
             )
         if path is not None:
-            encoder.load_state_dict(model_zoo.load_url(path))
+            encoder.load_state_dict(torch.load(path))
         else:
             encoder.load_state_dict(model_zoo.load_url(settings["url"]))
 
